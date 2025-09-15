@@ -14,7 +14,10 @@ with st.sidebar:
 
     if chat:
         df = convert_text_csv(chat)
-        creater, grpname = show_creater(df)
+        try:
+            creater, grpname = show_creater(df)
+        except:
+            creater,grpname=None,None
         df = cleaning(df)
 
         selected_contact = st.selectbox(
