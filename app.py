@@ -1,9 +1,17 @@
 import streamlit as st
 from analyser import *
+
 import nltk
 
-nltk.download('punkt')
-nltk.download('stopwords')
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt")
+
+try:
+    nltk.data.find("corpora/stopwords")
+except LookupError:
+    nltk.download("stopwords")
 
 
 st.set_page_config(layout="wide")
