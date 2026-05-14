@@ -15,18 +15,5 @@ log/*.log
 
 # Project specific
 data/
-temp_chat.txt
-temp_filename.txt
 artifacts/
 
-# OS
-.DS_Store
-Thumbs.db
-
-# Jupyter
-.ipynb_checkpoints
-Untitled.ipynb
-
-# Python tools
-.python-version
-uv.lock
