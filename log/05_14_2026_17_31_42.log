@@ -1,0 +1,37 @@
+[ 2026-05-14 17:31:42,984 ] root - INFO - Logger has started
+[ 2026-05-14 17:31:44,508 ] asyncio - DEBUG - Using selector: EpollSelector
+[ 2026-05-14 17:31:44,508 ] asyncio - DEBUG - Using selector: EpollSelector
+[ 2026-05-14 17:31:44,509 ] root - INFO - Starting data transformation pipeline test
+[ 2026-05-14 17:31:44,509 ] src.WhatsApp_Analyser.pipelines.data_ingestion_pipeline - INFO - Initializing DataIngestionPipeline
+[ 2026-05-14 17:31:44,509 ] src.WhatsApp_Analyser.pipelines.data_ingestion_pipeline - INFO - Starting Data Ingestion Pipeline
+[ 2026-05-14 17:31:44,509 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Initializing DataIngestionComponent
+[ 2026-05-14 17:31:44,509 ] src.WhatsApp_Analyser.components.DataIngestion_component - DEBUG - Config: DataIngestionConfig(ingest_file_path='/home/vashuthegreat/Projects/WhatsAppChatAnalyser/data/WhatsApp Chat with 2nd Year CSE-AIML-2[24-28].txt', data_ingestion_dir='artifacts/05_14_2026_17_31_43/ingestion', feature_store_file_path='artifacts/05_14_2026_17_31_43/ingestion/features/data.csv', training_file_path='artifacts/05_14_2026_17_31_43/ingestion/ingested_data/train.csv', testing_file_path='artifacts/05_14_2026_17_31_43/ingestion/ingested_data/test.csv', train_test_split_ratio=0.2)
+[ 2026-05-14 17:31:44,509 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Starting data ingestion process
+[ 2026-05-14 17:31:44,509 ] root - INFO - Entered in the get_data method of Data Acess
+[ 2026-05-14 17:31:44,510 ] root - INFO - Loaded data txt file
+[ 2026-05-14 17:31:44,510 ] root - INFO - converting data into test by convert_text_csv
+[ 2026-05-14 17:31:44,518 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Data fetched successfully. Row count: 732
+[ 2026-05-14 17:31:44,518 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Splitting dataset into train and test
+[ 2026-05-14 17:31:44,520 ] src.WhatsApp_Analyser.components.DataIngestion_component - DEBUG - Train size: 585, Test size: 147
+[ 2026-05-14 17:31:44,521 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Saving feature store, training, and testing files
+[ 2026-05-14 17:31:44,521 ] src.WhatsApp_Analyser.components.DataIngestion_component - DEBUG - Feature store directory created: artifacts/05_14_2026_17_31_43/ingestion/features
+[ 2026-05-14 17:31:44,527 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Feature store file saved at: artifacts/05_14_2026_17_31_43/ingestion/features/data.csv
+[ 2026-05-14 17:31:44,527 ] src.WhatsApp_Analyser.components.DataIngestion_component - DEBUG - Testing directory created: artifacts/05_14_2026_17_31_43/ingestion/ingested_data
+[ 2026-05-14 17:31:44,529 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Testing file saved at: artifacts/05_14_2026_17_31_43/ingestion/ingested_data/test.csv
+[ 2026-05-14 17:31:44,529 ] src.WhatsApp_Analyser.components.DataIngestion_component - DEBUG - Training directory created: artifacts/05_14_2026_17_31_43/ingestion/ingested_data
+[ 2026-05-14 17:31:44,532 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Training file saved at: artifacts/05_14_2026_17_31_43/ingestion/ingested_data/train.csv
+[ 2026-05-14 17:31:44,533 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Data ingestion completed successfully
+[ 2026-05-14 17:31:44,533 ] src.WhatsApp_Analyser.components.DataIngestion_component - DEBUG - Artifact: DataIngestionArtifact(trained_file_path='artifacts/05_14_2026_17_31_43/ingestion/ingested_data/train.csv', test_file_path='artifacts/05_14_2026_17_31_43/ingestion/ingested_data/test.csv')
+[ 2026-05-14 17:31:44,533 ] src.WhatsApp_Analyser.pipelines.data_ingestion_pipeline - INFO - Data Ingestion Pipeline completed successfully
+[ 2026-05-14 17:31:44,533 ] src.WhatsApp_Analyser.pipelines.data_transformation_pipeline - INFO - Initializing DataTransformationPipeline
+[ 2026-05-14 17:31:44,533 ] src.WhatsApp_Analyser.pipelines.data_transformation_pipeline - INFO - Starting Data Transformation Pipeline
+[ 2026-05-14 17:31:44,533 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Initializing DataTransformationComponent
+[ 2026-05-14 17:31:44,533 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Starting data transformation
+[ 2026-05-14 17:31:44,540 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Applying cleaning to train and test datasets
+[ 2026-05-14 17:31:44,540 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Cleaning dataframe
+[ 2026-05-14 17:31:44,550 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Cleaning dataframe
+[ 2026-05-14 17:31:44,558 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Transformed train data saved at artifacts/05_14_2026_17_31_43/transformation/transformed/train.csv
+[ 2026-05-14 17:31:44,560 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Transformed test data saved at artifacts/05_14_2026_17_31_43/transformation/transformed/test.csv
+[ 2026-05-14 17:31:44,560 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Data transformation completed successfully
+[ 2026-05-14 17:31:44,561 ] src.WhatsApp_Analyser.pipelines.data_transformation_pipeline - INFO - Data Transformation Pipeline completed successfully
+[ 2026-05-14 17:31:44,561 ] root - INFO - Data transformation artifact: DataTransformationArtifact(transformed_train_file_path='artifacts/05_14_2026_17_31_43/transformation/transformed/train.csv', transformed_test_file_path='artifacts/05_14_2026_17_31_43/transformation/transformed/test.csv')

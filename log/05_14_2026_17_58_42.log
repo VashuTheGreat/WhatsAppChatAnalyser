@@ -1,0 +1,80 @@
+[ 2026-05-14 17:58:42,812 ] root - INFO - Logger has started
+[ 2026-05-14 17:58:43,150 ] matplotlib - DEBUG - matplotlib data path: /home/vashuthegreat/Projects/WhatsAppChatAnalyser/.venv/lib/python3.13/site-packages/matplotlib/mpl-data
+[ 2026-05-14 17:58:43,158 ] matplotlib - DEBUG - CONFIGDIR=/home/vashuthegreat/.config/matplotlib
+[ 2026-05-14 17:58:43,158 ] matplotlib - DEBUG - interactive is False
+[ 2026-05-14 17:58:43,158 ] matplotlib - DEBUG - platform is linux
+[ 2026-05-14 17:58:43,258 ] matplotlib - DEBUG - CACHEDIR=/home/vashuthegreat/.cache/matplotlib
+[ 2026-05-14 17:58:43,260 ] matplotlib.font_manager - DEBUG - Using fontManager instance from /home/vashuthegreat/.cache/matplotlib/fontlist-v390.json
+[ 2026-05-14 17:58:45,544 ] asyncio - DEBUG - Using selector: EpollSelector
+[ 2026-05-14 17:58:45,544 ] asyncio - DEBUG - Using selector: EpollSelector
+[ 2026-05-14 17:58:45,544 ] root - INFO - Starting data analyser pipeline test
+[ 2026-05-14 17:58:45,544 ] src.WhatsApp_Analyser.pipelines.data_ingestion_pipeline - INFO - Initializing DataIngestionPipeline
+[ 2026-05-14 17:58:45,544 ] src.WhatsApp_Analyser.pipelines.data_ingestion_pipeline - INFO - Starting Data Ingestion Pipeline
+[ 2026-05-14 17:58:45,544 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Initializing DataIngestionComponent
+[ 2026-05-14 17:58:45,544 ] src.WhatsApp_Analyser.components.DataIngestion_component - DEBUG - Config: DataIngestionConfig(ingest_file_path='/home/vashuthegreat/Projects/WhatsAppChatAnalyser/data/WhatsApp Chat with 2nd Year CSE-AIML-2[24-28].txt', data_ingestion_dir='artifacts/05_14_2026_17_58_43/ingestion', feature_store_file_path='artifacts/05_14_2026_17_58_43/ingestion/features/data.csv', training_file_path='artifacts/05_14_2026_17_58_43/ingestion/ingested_data/train.csv', testing_file_path='artifacts/05_14_2026_17_58_43/ingestion/ingested_data/test.csv', train_test_split_ratio=0.2)
+[ 2026-05-14 17:58:45,544 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Starting data ingestion process
+[ 2026-05-14 17:58:45,544 ] root - INFO - Entered in the get_data method of Data Acess
+[ 2026-05-14 17:58:45,544 ] root - INFO - Loaded data txt file
+[ 2026-05-14 17:58:45,545 ] root - INFO - converting data into test by convert_text_csv
+[ 2026-05-14 17:58:45,555 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Data fetched successfully. Row count: 732
+[ 2026-05-14 17:58:45,555 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Splitting dataset into train and test
+[ 2026-05-14 17:58:45,559 ] src.WhatsApp_Analyser.components.DataIngestion_component - DEBUG - Train size: 585, Test size: 147
+[ 2026-05-14 17:58:45,559 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Saving feature store, training, and testing files
+[ 2026-05-14 17:58:45,560 ] src.WhatsApp_Analyser.components.DataIngestion_component - DEBUG - Feature store directory created: artifacts/05_14_2026_17_58_43/ingestion/features
+[ 2026-05-14 17:58:45,563 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Feature store file saved at: artifacts/05_14_2026_17_58_43/ingestion/features/data.csv
+[ 2026-05-14 17:58:45,563 ] src.WhatsApp_Analyser.components.DataIngestion_component - DEBUG - Testing directory created: artifacts/05_14_2026_17_58_43/ingestion/ingested_data
+[ 2026-05-14 17:58:45,564 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Testing file saved at: artifacts/05_14_2026_17_58_43/ingestion/ingested_data/test.csv
+[ 2026-05-14 17:58:45,564 ] src.WhatsApp_Analyser.components.DataIngestion_component - DEBUG - Training directory created: artifacts/05_14_2026_17_58_43/ingestion/ingested_data
+[ 2026-05-14 17:58:45,566 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Training file saved at: artifacts/05_14_2026_17_58_43/ingestion/ingested_data/train.csv
+[ 2026-05-14 17:58:45,566 ] src.WhatsApp_Analyser.components.DataIngestion_component - INFO - Data ingestion completed successfully
+[ 2026-05-14 17:58:45,566 ] src.WhatsApp_Analyser.components.DataIngestion_component - DEBUG - Artifact: DataIngestionArtifact(trained_file_path='artifacts/05_14_2026_17_58_43/ingestion/ingested_data/train.csv', test_file_path='artifacts/05_14_2026_17_58_43/ingestion/ingested_data/test.csv')
+[ 2026-05-14 17:58:45,566 ] src.WhatsApp_Analyser.pipelines.data_ingestion_pipeline - INFO - Data Ingestion Pipeline completed successfully
+[ 2026-05-14 17:58:45,566 ] src.WhatsApp_Analyser.pipelines.data_validation_pipeline - INFO - Initializing DataValidationPipeline
+[ 2026-05-14 17:58:45,566 ] src.WhatsApp_Analyser.pipelines.data_validation_pipeline - INFO - Starting Data Validation Pipeline
+[ 2026-05-14 17:58:45,566 ] src.WhatsApp_Analyser.components.DataValidation_compoent - INFO - Initializing DataValidationComponent
+[ 2026-05-14 17:58:45,566 ] src.WhatsApp_Analyser.components.DataValidation_compoent - INFO - Starting data validation process
+[ 2026-05-14 17:58:45,567 ] src.WhatsApp_Analyser.components.DataValidation_compoent - INFO - Schema loaded from config/data_validation.yml
+[ 2026-05-14 17:58:45,571 ] src.WhatsApp_Analyser.components.DataValidation_compoent - INFO - Data loaded from artifacts/05_14_2026_17_58_43/ingestion/features/data.csv
+[ 2026-05-14 17:58:45,571 ] src.WhatsApp_Analyser.components.DataValidation_compoent - INFO - Starting schema validation
+[ 2026-05-14 17:58:45,571 ] src.WhatsApp_Analyser.components.DataValidation_compoent - DEBUG - Expected columns: ['Date', 'Time', 'Sender', 'Message']
+[ 2026-05-14 17:58:45,571 ] src.WhatsApp_Analyser.components.DataValidation_compoent - DEBUG - Expected number of columns: 4
+[ 2026-05-14 17:58:45,571 ] src.WhatsApp_Analyser.components.DataValidation_compoent - INFO - Schema validation successful
+[ 2026-05-14 17:58:45,572 ] src.WhatsApp_Analyser.components.DataValidation_compoent - INFO - Validation report saved at artifacts/05_14_2026_17_58_43/validation/report.yaml
+[ 2026-05-14 17:58:45,572 ] src.WhatsApp_Analyser.pipelines.data_validation_pipeline - INFO - Data Validation Pipeline completed successfully
+[ 2026-05-14 17:58:45,572 ] src.WhatsApp_Analyser.pipelines.data_transformation_pipeline - INFO - Initializing DataTransformationPipeline
+[ 2026-05-14 17:58:45,572 ] src.WhatsApp_Analyser.pipelines.data_transformation_pipeline - INFO - Starting Data Transformation Pipeline
+[ 2026-05-14 17:58:45,572 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Initializing DataTransformationComponent
+[ 2026-05-14 17:58:45,572 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Starting data transformation
+[ 2026-05-14 17:58:45,577 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Applying cleaning to train and test datasets
+[ 2026-05-14 17:58:45,577 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Cleaning dataframe
+[ 2026-05-14 17:58:45,585 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Cleaning dataframe
+[ 2026-05-14 17:58:45,594 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Transformed train data saved at artifacts/05_14_2026_17_58_43/transformation/transformed/train.csv
+[ 2026-05-14 17:58:45,595 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Transformed test data saved at artifacts/05_14_2026_17_58_43/transformation/transformed/test.csv
+[ 2026-05-14 17:58:45,596 ] src.WhatsApp_Analyser.components.DataTransformation_config - INFO - Data transformation completed successfully
+[ 2026-05-14 17:58:45,596 ] src.WhatsApp_Analyser.pipelines.data_transformation_pipeline - INFO - Data Transformation Pipeline completed successfully
+[ 2026-05-14 17:58:45,596 ] src.WhatsApp_Analyser.pipelines.data_analyser_pipeline - INFO - Initializing DataAnalyserPipeline
+[ 2026-05-14 17:58:45,596 ] src.WhatsApp_Analyser.pipelines.data_analyser_pipeline - INFO - Starting Data Analyser Pipeline
+[ 2026-05-14 17:58:45,599 ] root - ERROR - Unhandled exception
+Traceback (most recent call last):
+  File "/home/vashuthegreat/Projects/WhatsAppChatAnalyser/utils/asyncHandler.py", line 8, in decorator
+    return await fn(*args, **kwargs)
+                 ~~^^^^^^^^^^^^^^^^^
+TypeError: DataAnalyserComponent.show_creater() takes 1 positional argument but 2 were given
+[ 2026-05-14 17:58:45,600 ] root - ERROR - Unhandled exception
+Traceback (most recent call last):
+  File "/home/vashuthegreat/Projects/WhatsAppChatAnalyser/utils/asyncHandler.py", line 8, in decorator
+    return await fn(*args, **kwargs)
+                 ~~^^^^^^^^^^^^^^^^^
+TypeError: DataAnalyserComponent.listOfContacts() takes 2 positional arguments but 3 were given
+[ 2026-05-14 17:58:45,600 ] root - ERROR - Unhandled exception
+Traceback (most recent call last):
+  File "/home/vashuthegreat/Projects/WhatsAppChatAnalyser/utils/asyncHandler.py", line 8, in decorator
+    return await fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vashuthegreat/Projects/WhatsAppChatAnalyser/src/WhatsApp_Analyser/pipelines/data_analyser_pipeline.py", line 30, in initiate
+    contacts = await self.analyser.listOfContacts(df, grpname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vashuthegreat/Projects/WhatsAppChatAnalyser/utils/asyncHandler.py", line 8, in decorator
+    return await fn(*args, **kwargs)
+                 ~~^^^^^^^^^^^^^^^^^
+TypeError: DataAnalyserComponent.listOfContacts() takes 2 positional arguments but 3 were given

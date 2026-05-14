@@ -1,0 +1,7 @@
+[ 2026-05-14 18:01:40,198 ] root - INFO - Logger has started
+[ 2026-05-14 18:01:40,296 ] matplotlib - DEBUG - matplotlib data path: /home/vashuthegreat/Projects/WhatsAppChatAnalyser/.venv/lib/python3.13/site-packages/matplotlib/mpl-data
+[ 2026-05-14 18:01:40,308 ] matplotlib - DEBUG - CONFIGDIR=/home/vashuthegreat/.config/matplotlib
+[ 2026-05-14 18:01:40,309 ] matplotlib - DEBUG - interactive is False
+[ 2026-05-14 18:01:40,309 ] matplotlib - DEBUG - platform is linux
+[ 2026-05-14 18:01:40,324 ] matplotlib - DEBUG - CACHEDIR=/home/vashuthegreat/.cache/matplotlib
+[ 2026-05-14 18:01:40,326 ] matplotlib.font_manager - DEBUG - Using fontManager instance from /home/vashuthegreat/.cache/matplotlib/fontlist-v390.json

@@ -1,0 +1,2 @@
+[ 2026-05-14 18:39:38,446 ] root - INFO - Logger has started
+[ 2026-05-14 18:39:39,619 ] asyncio - DEBUG - Using selector: EpollSelector

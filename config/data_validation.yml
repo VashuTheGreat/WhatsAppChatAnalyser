@@ -1,0 +1,19 @@
+columns:
+  Date:
+    type: object
+    required: true
+  Time:
+    type: object
+    required: true
+  Sender:
+    type: object
+    required: True
+  Message:
+    type: object
+    required: True
+
+num_columns: 4
+
+schema_check:
+  missing_values_threshold: 0.1
+  unique_senders_min: 1
