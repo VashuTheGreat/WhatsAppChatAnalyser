@@ -18,7 +18,7 @@ from src.WhatsApp_Analyser.entity.artifact_entity import DataIngestionArtifact, 
 async def test_data_analyser_pipeline():
     logging.info("Starting data analyser pipeline test")
     
-    data_path = "/home/vashuthegreat/Projects/WhatsAppChatAnalyser/data/WhatsApp Chat with CSE AIML-2 Unofficial.txt"
+    data_path = "data/WhatsApp Chat with CSE AIML-2 Unofficial.txt"
     data_ingestion_config = DataIngestionConfig(ingest_file_path=data_path)
     data_ingestion_pipeline = DataIngestionPipeline(data_ingestion_config=data_ingestion_config)
     data_ingestion_artifact = await data_ingestion_pipeline.initiate()
