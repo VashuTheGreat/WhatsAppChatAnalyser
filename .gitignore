@@ -14,6 +14,6 @@ log/*.log
 *.log
 
 # Project specific
-# data/
+data/
 artifacts/
 
