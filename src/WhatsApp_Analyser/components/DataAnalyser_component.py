@@ -125,8 +125,7 @@ class DataAnalyserComponent:
 
     @asyncHandler
     async def Most_common_Word(self, df: pd.DataFrame) -> plt.Figure:
-        nltk.download('stopwords')
-        nltk.download('punkt')
+        
         stemmer = PorterStemmer()
         unwanted_words = {"omit", "mention", "<", ">", "media"}
         text = ' '.join(df['Message']).lower()

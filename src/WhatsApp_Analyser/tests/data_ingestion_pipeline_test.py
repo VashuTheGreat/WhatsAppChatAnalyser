@@ -11,7 +11,7 @@ from src.WhatsApp_Analyser.entity.artifact_entity import DataIngestionArtifact
 
 @pytest.mark.asyncio
 async def test_data_ingestion_pipeline():
-    data_path:str="/home/vashuthegreat/Projects/WhatsAppChatAnalyser/data/WhatsApp Chat with CSE AIML-2 Unofficial.txt"
+    data_path:str="data/WhatsApp Chat with CSE AIML-2 Unofficial.txt"
     data_ingestion_config = DataIngestionConfig(
         ingest_file_path=data_path
         

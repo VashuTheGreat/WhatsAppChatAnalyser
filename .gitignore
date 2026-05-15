@@ -17,8 +17,3 @@ log/*.log
 data/
 artifacts/
 
-# OS
-.DS_Store
-Thumbs.db
-
-
