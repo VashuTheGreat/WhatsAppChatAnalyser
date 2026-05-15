@@ -20,7 +20,7 @@ jobs:
         run: uv sync
 
       - name: Installing nltk dependencies
-        run: uv run nltk.downloader punkt stopwords punkt_tab
+        run: uv run python -m nltk.downloader punkt stopwords punkt_tab
 
       - name: Run Tests
         # env:
