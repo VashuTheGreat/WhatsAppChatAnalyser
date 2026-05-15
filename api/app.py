@@ -4,7 +4,6 @@ import logging
 import os
 from typing import List, Tuple, Any
 
-import nltk
 import pandas as pd
 import matplotlib.pyplot as plt
 from fastapi import FastAPI, Request, UploadFile, File, Form
@@ -18,11 +17,7 @@ from src.WhatsApp_Analyser.pipelines.data_analyser_pipeline import DataAnalyserP
 from src.WhatsApp_Analyser.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig, DataAnalyserConfig
 from src.WhatsApp_Analyser.entity.artifact_entity import DataIngestionArtifact, DataValidationArtifact, DataTransformationArtifact, DataAnalyserArtifact
 
-for resource in ["punkt", "punkt_tab", "stopwords"]:
-    try:
-        nltk.data.find(f"tokenizers/{resource}")
-    except LookupError:
-        nltk.download(resource)
+
 
 app = FastAPI()
 templates = Jinja2Templates(directory="api/templates")
