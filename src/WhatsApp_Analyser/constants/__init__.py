@@ -29,3 +29,7 @@ DATA_TRANSFORMATION_TEST_FILE_NAME="test.csv"
 
 # =================== Data Analyser ===========================
 DATA_ANALYSER_DIR_NAME="analysis"
+
+# =================== LLM Configuration ===========================
+MODEL_NAME = "llama-3.3-70b-versatile"
+TEMPERATURE = 0.7
