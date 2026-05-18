@@ -6,7 +6,6 @@ from src.WhatsApp_Analyser.llm import model as base_model
 from src.WhatsApp_Analyser.prompts import CHAT_LLM_PROMPT
 from langchain_core.messages import SystemMessage
 
-# Define tools list for export
 tools = [code_runner]
 
 @asyncHandler
@@ -14,7 +13,6 @@ async def chat(state: State):
     logging.info("Chat node initiated")
     
     messages = state.messages
-    # Add system prompt if it's the beginning of the conversation
     if not any(isinstance(m, SystemMessage) for m in messages):
         system_content = f"{CHAT_LLM_PROMPT}\n\nAvailable data file path: {state.file_path}"
         messages = [SystemMessage(content=system_content)] + messages
