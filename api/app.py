@@ -9,11 +9,13 @@ import matplotlib.pyplot as plt
 from fastapi import FastAPI, Request, UploadFile, File, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from pydantic import BaseModel
 
 from src.WhatsApp_Analyser.pipelines.data_ingestion_pipeline import DataIngestionPipeline
 from src.WhatsApp_Analyser.pipelines.data_validation_pipeline import DataValidationPipeline
 from src.WhatsApp_Analyser.pipelines.data_transformation_pipeline import DataTransformationPipeline
 from src.WhatsApp_Analyser.pipelines.data_analyser_pipeline import DataAnalyserPipeline
+from src.WhatsApp_Analyser.pipelines.ai_pipeline import AIPipeline
 from src.WhatsApp_Analyser.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig, DataAnalyserConfig
 from src.WhatsApp_Analyser.entity.artifact_entity import DataIngestionArtifact, DataValidationArtifact, DataTransformationArtifact, DataAnalyserArtifact
 
@@ -21,6 +23,13 @@ from src.WhatsApp_Analyser.entity.artifact_entity import DataIngestionArtifact, 
 
 app = FastAPI()
 templates = Jinja2Templates(directory="api/templates")
+
+# Global variable to store data path for chat
+DATA_FILE_PATH = None
+ai_pipeline = AIPipeline()
+
+class ChatRequest(BaseModel):
+    message: str
 
 def fig_to_base64(fig: plt.Figure) -> str:
     buf = io.BytesIO()
@@ -75,6 +84,9 @@ async def analyze(
         )
         
     data_ingestion_config = DataIngestionConfig(ingest_file_path=temp_chat_path)
+    global DATA_FILE_PATH
+    DATA_FILE_PATH = os.path.abspath(data_ingestion_config.feature_store_file_path)
+    
     data_ingestion_pipeline = DataIngestionPipeline(data_ingestion_config=data_ingestion_config)
     data_ingestion_artifact = await data_ingestion_pipeline.initiate()
     
@@ -119,3 +131,19 @@ async def analyze(
         }
     )
 
+@app.post("/chat")
+async def chat_endpoint(chat_req: ChatRequest):
+    global DATA_FILE_PATH
+    if not DATA_FILE_PATH:
+        return {"response": "Please upload and analyze a file first."}
+    
+    try:
+        ai_msg = await ai_pipeline.get_response(
+            message=chat_req.message,
+            file_path=DATA_FILE_PATH,
+            thread_id="web_user"
+        )
+        return {"response": ai_msg}
+    except Exception as e:
+        logging.error(f"Chat error: {e}")
+        return {"response": f"Sorry, I encountered an error: {str(e)}"}

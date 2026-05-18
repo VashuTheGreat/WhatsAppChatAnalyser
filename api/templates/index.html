@@ -65,6 +65,148 @@
         .theme-toggle {
             padding-top: 20px;
         }
+
+        /* Floating AI Chat Styles */
+        #chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        #chat-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #00ff00;
+            color: black;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0,255,0,0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        #chat-button:hover {
+            transform: scale(1.1);
+        }
+
+        #chat-window {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            transition: opacity 0.3s;
+        }
+
+        #chat-header {
+            background: #00ff00;
+            color: black;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: #00ff00;
+            color: black;
+        }
+
+        .ai-message {
+            align-self: flex-start;
+            background-color: var(--bs-tertiary-bg);
+            color: var(--bs-body-color);
+            border: 1px solid var(--border-color);
+        }
+
+        #chat-input-area {
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 10px;
+        }
+
+        #chat-input {
+            flex-grow: 1;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 5px 15px;
+            background: var(--bs-body-bg);
+            color: var(--bs-body-color);
+        }
+
+        .dot-flashing {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #00ff00;
+            color: #00ff00;
+            animation: dot-flashing 1s infinite linear alternate;
+            animation-delay: .5s;
+            margin: 0 auto;
+        }
+        .dot-flashing::before, .dot-flashing::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 0;
+        }
+        .dot-flashing::before {
+            left: -15px;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #00ff00;
+            color: #00ff00;
+            animation: dot-flashing 1s infinite linear alternate;
+            animation-delay: 0s;
+        }
+        .dot-flashing::after {
+            left: 15px;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #00ff00;
+            color: #00ff00;
+            animation: dot-flashing 1s infinite linear alternate;
+            animation-delay: 1s;
+        }
+
+        @keyframes dot-flashing {
+            0% { background-color: #00ff00; }
+            50%, 100% { background-color: #00ff0033; }
+        }
     </style>
 </head>
 <body data-bs-theme="light">
@@ -238,6 +380,29 @@
             </div>
         </div>
     </div>
+
+    <!-- Floating AI Chat Widget -->
+    {% if analysis_done %}
+    <div id="chat-widget">
+        <button id="chat-button" title="Chat with AI Analyser">
+            <span>🤖</span>
+        </button>
+        <div id="chat-window">
+            <div id="chat-header">
+                <span>AI Analyser</span>
+                <button type="button" class="btn-close btn-close-white" id="close-chat" style="font-size: 10px;"></button>
+            </div>
+            <div id="chat-messages">
+                <div class="message ai-message">Hi! I'm your WhatsApp analysis assistant. Ask me anything about your chat data!</div>
+            </div>
+            <div id="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+                <button class="btn btn-sm btn-success" id="send-chat" style="border-radius: 20px;">Send</button>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -274,6 +439,73 @@
                     onDropdownOpen: function() {
                         this.clearCache();
                     }
+                });
+            }
+
+            // Chat Widget Logic
+            const chatButton = document.getElementById('chat-button');
+            const chatWindow = document.getElementById('chat-window');
+            const closeChat = document.getElementById('close-chat');
+            const chatInput = document.getElementById('chat-input');
+            const sendChat = document.getElementById('send-chat');
+            const chatMessages = document.getElementById('chat-messages');
+
+            if (chatButton) {
+                chatButton.addEventListener('click', () => {
+                    chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+                    if (chatWindow.style.display === 'flex') {
+                        chatInput.focus();
+                    }
+                });
+
+                closeChat.addEventListener('click', () => {
+                    chatWindow.style.display = 'none';
+                });
+
+                const appendMessage = (text, isUser = false) => {
+                    const msgDiv = document.createElement('div');
+                    msgDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
+                    msgDiv.innerText = text;
+                    chatMessages.appendChild(msgDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                };
+
+                const showLoading = () => {
+                    const loadingDiv = document.createElement('div');
+                    loadingDiv.className = 'message ai-message loading-msg';
+                    loadingDiv.innerHTML = '<div class="dot-flashing" style="margin: 10px 20px;"></div>';
+                    chatMessages.appendChild(loadingDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    return loadingDiv;
+                };
+
+                const handleSend = async () => {
+                    const message = chatInput.value.trim();
+                    if (!message) return;
+
+                    appendMessage(message, true);
+                    chatInput.value = '';
+                    
+                    const loading = showLoading();
+
+                    try {
+                        const response = await fetch('/chat', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ message: message })
+                        });
+                        const data = await response.json();
+                        loading.remove();
+                        appendMessage(data.response);
+                    } catch (error) {
+                        loading.remove();
+                        appendMessage("Sorry, I'm having trouble connecting right now.");
+                    }
+                };
+
+                sendChat.addEventListener('click', handleSend);
+                chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') handleSend();
                 });
             }
         });
