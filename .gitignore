@@ -17,3 +17,5 @@ log/*.log
 data/
 artifacts/
 
+
+.env
