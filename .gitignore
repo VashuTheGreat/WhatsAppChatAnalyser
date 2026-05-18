@@ -19,3 +19,7 @@ artifacts/
 
 
 .env
+
+
+temp_chat.txt
+temp_filename.txt
